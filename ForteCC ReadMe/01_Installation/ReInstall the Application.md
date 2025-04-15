@@ -81,5 +81,3 @@ This will:
     
 
 ---
-
-Let me know if you also want to **automate this reset process** with a script or add custom setup data after reinstall!

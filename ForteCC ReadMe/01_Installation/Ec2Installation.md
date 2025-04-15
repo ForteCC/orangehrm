@@ -1,4 +1,4 @@
-Here’s how to install Docker and Docker Compose on Ubuntu
+`sudo ls /var/lib/docker/volumes/`Here’s how to install Docker and Docker Compose on Ubuntu
 https://wiki.opensourceisawesome.com/books/open-source-personnel-management/page/install-and-configure-orangehrm
 
 ### **Step 1: Update System Packages**
@@ -110,24 +110,44 @@ services:
       - MYSQL_DATABASE=
 ```
 
+---
+## Persistant Volume:
+- Database data in: `/var/lib/docker/volumes/<project>_db_data/_data/`
+- OrangeHRM files in: `/var/lib/docker/volumes/<project>_orangehrm_data/_data/`
 
+## To get into the folder do this:
+#### 1. **Use `sudo` to start a shell:**
+`sudo -s 
+cd /var/lib/docker/volumes/`
+Now you're in a root shell and can navigate protected directories.
+#### 2. **Use `sudo` with `ls` or other commands directly:**
 
+If you just want to look around:
+`sudo ls /var/lib/docker/volumes/`
 
-
+- OrangeHRM : orangehrm_db_data
+- DB: orangehrm_orangehrm_data
 ---
 
 ref:
 [OrangeHRM (open source HRM software Docker App), Installation, Part 1](https://www.youtube.com/watch?v=FWS7KH7os2Y&t=1s&ab_channel=Datapioneer)
 
+---
+## Database Configuration
+1) Select option of existing empty Database as we already had created DB with compose.
+2) Database Host Name : Name of the container running for database(`docker-compose ps`)
+3) Database Name: Value of `ORANGEHRM_DATABASE_NAME` in the Compose File.
+4) OrangeHRM Database Username: MYSQL_ROOT_USER
+5) OrangeHRM Database Password: ORANGEHRM_DATABASE_PASSWORD
+
+## Instance Creation:
+1) Timezone: America/New_York.
+
+## Admin User Creation
+1) Create new user that will be added to the OrangeHRM database and as an admin. e.g. John Doe.
+2) Uncheck Register Your System With OrangeHRM.
+3) Click Next.
+
+This will Finish your installation process.
 
 ---
-
-![](images/2025-03-28-15-52-19-image.png)
-
----
-
-![](images/2025-03-28-18-12-57-image.png)
-
-![](images/2025-03-28-18-13-11-image.png)
-
-![](images/2025-03-28-18-13-26-image.png)
