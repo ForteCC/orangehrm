@@ -1,0 +1,34 @@
+version: "3.3"
+
+volumes:
+  db_data:  # Named volume for database storage
+  orangehrm_data:  # Named volume for OrangeHRM files
+
+services:
+  orangehrm:
+    image: orangehrm/orangehrm:latest
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+      - "8443:443"
+    environment:
+      - ORANGEHRM_DATABASE_HOST=mariadb
+      - ORANGEHRM_DATABASE_USER=orangehrmUser
+      - ORANGEHRM_DATABASE_PASSWORD=93RspoUaDaqcjIy
+      - ORANGEHRM_DATABASE_NAME=orangehrmdb
+      - PUID=998
+      - PGID=100
+    volumes:
+      - orangehrm_data:/orangehrm
+      - ./Logo/ohrm_logo.png:/var/www/html/web/images/ohrm_logo.png
+
+
+  mariadb:
+    image: mariadb:10.2
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql  # Uses Docker-managed volume
+    environment:
+      - MYSQL_ROOT_PASSWORD=jcj!gwn0RXA_pgf7czc
+      - MYSQL_ROOT_USER=root
+      - MYSQL_DATABASE=orangehrmdb

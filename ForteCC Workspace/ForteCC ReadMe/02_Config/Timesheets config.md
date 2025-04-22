@@ -1,0 +1,1 @@
+- The start day is Thursday for the timesheet.
